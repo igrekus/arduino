@@ -1,3 +1,4 @@
+from time import sleep
 from serial import Serial
 
 
@@ -24,10 +25,10 @@ class ArduinoSTM32(object):
         return answer
 
     def query(self, question: str):
-        print(f'{self._name} query: {question}')
         self.write(question)
-        while not self._port.in_waiting:
-            pass
+        # while not self._port.in_waiting:
+        #     pass
+        sleep(0.1)
         return self.read_all()
 
     def disconnect(self):
