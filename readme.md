@@ -1,1 +1,1 @@
-Simple Arduino-based programmer wrapper.
+Simple Arduino-based programmer wrapper. Requires custom firmware.
