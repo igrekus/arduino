@@ -33,7 +33,8 @@ class ArduinoSTM32(object):
 
     def disconnect(self):
         print(f'{self._name}: disconnect()')
-        self._port.close()
+        if self._port.is_open:
+            self._port.close()
 
     def set_lpf_code(self, code: int) -> bool:
         print(f'{self._name}: set_lpf_code({code})')
