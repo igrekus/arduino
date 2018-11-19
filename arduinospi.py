@@ -2,14 +2,14 @@ from time import sleep
 from serial import Serial
 
 
-class ArduinoSTM32(object):
+class ArduinoSpi(object):
 
     command_write_lpf_code = 'LPF'
 
     def __init__(self, *args, **kwargs):
         self._port = Serial(*args, **kwargs)
 
-        self._name = 'STM32'
+        self._name = 'SPI'
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'

@@ -1,4 +1,4 @@
-from arduino.arduinostm32 import ArduinoSTM32
+from arduino.arduinospi import ArduinoSpi
 
 
 class PortMock:
@@ -33,9 +33,9 @@ class PortMock:
         return True
 
 
-class ArduinoSTM32Mock(ArduinoSTM32):
+class ArduinoSpiMock(ArduinoSpi):
 
     def __init__(self, *args, **kwargs):
         self._port = PortMock()
-        self._name = 'STM32-mock'
+        self._name = 'SPI-mock'
 
