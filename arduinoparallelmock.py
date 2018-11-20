@@ -38,3 +38,9 @@ class ArduinoParallelMock(ArduinoParallel):
         self._port = PortMock()
         self._name = 'Parallel mock'
 
+    def query(self, question: str):
+        self.write(question)
+        # while not self._port.in_waiting:
+        #     pass
+        return self.read_all()
+
