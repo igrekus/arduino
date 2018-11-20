@@ -15,7 +15,7 @@ class ArduinoParallel(object):
         return f'{self._name} at {self._port.port}'
 
     def write(self, command: str):
-        cmd = bytes(f'{command}\n', encoding='ascii')
+        cmd = bytes(f'{command}', encoding='ascii')
         print(f'{self._name} write: {cmd.strip()}')
         return self._port.write(cmd)
 
@@ -28,7 +28,7 @@ class ArduinoParallel(object):
         self.write(question)
         # while not self._port.in_waiting:
         #     pass
-        sleep(0.1)
+        sleep(2)
         return self.read_all()
 
     def disconnect(self):
@@ -40,6 +40,9 @@ class ArduinoParallel(object):
         print(f'{self._name}: set_lpf_code({code})')
         comm = f'{self.command_write_lpf_code},{code}'
         self.query(comm)
+        # self.write(comm)
+        # sleep(2)
+        self.read_all()
         return True
 
     @property
