@@ -15,13 +15,10 @@ class PortMock:
         return True
 
     def write(self, command: str):
-        cmd = (command + '\n').encode('ascii')
-        print(f'PortMock write: {cmd.strip()}')
-        return len(cmd)
+        return len(command)
 
     def read_all(self):
         answer = 'answer'
-        print(f'PortMock read_all: {answer}')
         return answer
 
     @property
