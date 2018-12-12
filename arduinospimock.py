@@ -14,11 +14,13 @@ class PortMock:
     def close(self):
         return True
 
-    def write(self, command: str):
+    def write(self, command):
+        print(f'PortMock write: {command.strip()}')
         return len(command)
 
     def read_all(self):
         answer = 'answer'
+        print(f'PortMock read_all: {answer}')
         return answer
 
     @property
@@ -35,4 +37,4 @@ class ArduinoSpiMock(ArduinoSpi):
     def __init__(self, *args, **kwargs):
         self._port = PortMock()
         self._name = 'SPI-mock'
-
+        self._delay = 0

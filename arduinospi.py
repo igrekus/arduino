@@ -10,6 +10,7 @@ class ArduinoSpi(object):
         self._port = Serial(*args, **kwargs)
 
         self._name = 'SPI'
+        self._delay = 0.1
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'
@@ -28,7 +29,7 @@ class ArduinoSpi(object):
         self.write(question)
         # while not self._port.in_waiting:
         #     pass
-        sleep(0.1)
+        sleep(self._delay)
         return self.read_all()
 
     def disconnect(self):
