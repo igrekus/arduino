@@ -5,12 +5,19 @@ from serial import Serial
 class ArduinoSpi(object):
 
     command_write_lpf_code = 'LPF'
+    command_start = '<'
+    command_xra1405_write = 'x'
+    command_separator = '.'
+    command_end = '>'
+    command_newline = '\n'
+    command_set_p0_p7_output = '0C00'
+    command_p0_p7_write = '04'
 
     def __init__(self, *args, **kwargs):
         self._port = Serial(*args, **kwargs)
 
         self._name = 'SPI'
-        self._delay = 0.1
+        self._delay = 0.2
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'
@@ -39,8 +46,17 @@ class ArduinoSpi(object):
 
     def set_lpf_code(self, code: int) -> bool:
         print(f'{self._name}: set_lpf_code({code})')
-        comm = f'{self.command_write_lpf_code},{code}'
-        self.query(comm)
+        command = \
+            self.command_start + \
+            self.command_xra1405_write + \
+            self.command_separator + \
+            self.command_set_p0_p7_output + \
+            self.command_separator + \
+            self.command_p0_p7_write + \
+            f'{code:02X}' + \
+            self.command_end + \
+            self.command_newline
+        self.query(command)
         return True
 
     @property
