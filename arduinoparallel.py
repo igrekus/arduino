@@ -10,7 +10,7 @@ class ArduinoParallel(object):
         self._port = Serial(*args, **kwargs)
 
         self._name = 'Parallel'
-        self._delay = 2
+        self._delay = 1.7
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'
@@ -41,9 +41,6 @@ class ArduinoParallel(object):
         print(f'{self._name}: set_lpf_code({code})')
         comm = f'{self.command_write_lpf_code},{code}'
         self.query(comm)
-        # self.write(comm)
-        # sleep(2)
-        self.read_all()
         return True
 
     @property
