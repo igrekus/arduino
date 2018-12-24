@@ -38,7 +38,7 @@ class ArduinoParallel(object):
             self._port.close()
 
     def set_lpf_code(self, code: int) -> bool:
-        print(f'{self._name}: set_lpf_code({code})')
+        print(f'{self._name}: set_lpf_code dec={code}, bin={code:06b}')
         comm = f'{self.command_write_lpf_code},{code}'
         self.query(comm)
         return True
