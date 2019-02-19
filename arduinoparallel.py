@@ -17,12 +17,12 @@ class ArduinoParallel(object):
 
     def write(self, command: str):
         cmd = bytes(f'{command}', encoding='ascii')
-        print(f'{self._name} write: {cmd.strip()}')
+        print(f'>>> {self._name} write: {cmd.strip()}')
         return self._port.write(cmd)
 
     def read_all(self):
         answer = self._port.read_all()
-        print(f'{self._name} read_all: {answer}')
+        print(f'> {self._name} answer: {answer}')
         return answer
 
     def query(self, question: str):
