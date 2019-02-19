@@ -10,7 +10,7 @@ class ArduinoParallel(object):
         self._port = Serial(*args, **kwargs)
 
         self._name = 'Parallel'
-        self._delay = 1.7
+        self._delay = 0.3
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'
