@@ -44,8 +44,8 @@ class ArduinoSpi(object):
         if self._port.is_open:
             self._port.close()
 
-    def set_lpf_code(self, code: int) -> bool:
-        print(f'{self._name}: set_lpf_code({code})')
+    def set_lpf_code_spi(self, code: int) -> bool:
+        print(f'{self._name}: set_lpf_code_spi({code})')
         command = \
             self.command_start + \
             self.command_xra1405_write + \
@@ -58,6 +58,14 @@ class ArduinoSpi(object):
             self.command_newline
         self.query(command)
         return True
+
+    def set_lpf_code_parallel(self, code: int) -> bool:
+        print(f'{self._name}: set_lpf_code_parallel({code})')
+        command = f'<l.{code}>'
+        self.query(command)
+        return True
+
+    set_lpf_code = set_lpf_code_parallel
 
     @property
     def name(self):
