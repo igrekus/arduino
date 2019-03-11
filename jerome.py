@@ -144,6 +144,10 @@ class Jerome:
             self._pin_states[line + 1] = int(state)
         return self.query(f'$KE,WRA,{array}')
 
+    def write_line(self, line, state):
+        self._pin_states[line] = state
+        return self.query(f'$KE,WR,{line},{state}')
+
     @property
     def name(self):
         return self.__str__()
