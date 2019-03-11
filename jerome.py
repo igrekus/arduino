@@ -199,6 +199,10 @@ class Jerome:
     def pin_states(self):
         return self._pin_states
 
+    @property
+    def pin_io(self):
+        return self._pin_io
+
     @classmethod
     def find_com_port(cls):
 
