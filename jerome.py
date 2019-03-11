@@ -67,6 +67,7 @@ class JeromeSerialMock:
         self._success = b'#OK\r\n'
         self._success_io_set = b'#IO,SET,OK\r\n'
         self._success_wra = b'#WRA,OK,24\r\n'
+        self._success_wr = b'#WR,OK\r\n'
 
     def open(self):
         self._open = True
@@ -86,7 +87,7 @@ class JeromeSerialMock:
         elif b'$KE,WRA,' in self._last_write:
             ans = self._success_wra
         elif b'$KE,WR,' in self._last_write:
-            ans = self._success
+            ans = self._success_wr
         self._last_write = b''
         return ans
 
