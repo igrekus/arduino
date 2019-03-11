@@ -160,6 +160,10 @@ class Jerome:
     def delay(self, value):
         self._delay = value
 
+    @property
+    def pin_states(self):
+        return self._pin_states
+
     @classmethod
     def find_com_port(cls):
 
