@@ -128,6 +128,13 @@ class JeromeSerialMock:
 
 class Jerome:
 
+    mkr_bits = {
+        b0: [IO9, IO10],
+        b1: [IO7, IO8],
+        b2: [IO11, IO12],
+        b3: [IO13, IO14]
+    }
+
     def __init__(self, serial_obj):
         self._serial = serial_obj
 
@@ -165,6 +172,12 @@ class Jerome:
         ios = [self.set_io(pin, PIN_OFF) for pin in [IO7, IO8, IO9, IO10, IO11, IO12, IO13, IO14]]
         wra = self.write_array('000000010101010000000000')
         return ios + [wra]
+
+    def mkr_set_bit(self, bit: int, state: int):
+        p_line, n_line = self.mkr_bits[bit]
+        ans_p_line = self.write_line(p_line, state)
+        ans_n_line = self.write_line(n_line, state ^ 1)
+        return ans_p_line, ans_n_line
 
     def set_io(self, pin, state):
         self._pin_io[pin] = state
