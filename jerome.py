@@ -130,6 +130,7 @@ class Jerome:
         return self.query('$KE')
 
     def mkr_init(self):
+        # TODO extract to a specialized subclass?
         ios = [self.set_io(pin, PIN_OFF) for pin in [IO7, IO8, IO9, IO10, IO11, IO12, IO13, IO14]]
         wra = self.write_array('000000010101010000000000')
         return ios + [wra]
