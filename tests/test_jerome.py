@@ -33,10 +33,25 @@ def test_jerome_ping(setup_jerome):
     expect(j.ping()).to_equal('#OK')
 
 
-def test_jerome_mkr_init(setup_jerome):
+def test_jerome_write_array(setup_jerome):
     j = setup_jerome
 
-    expect(j.mkr_init()).to_equal(['#IO,SET,OK', '#IO,SET,OK', '#IO,SET,OK', '#IO,SET,OK', '#IO,SET,OK', '#IO,SET,OK', '#IO,SET,OK', '#IO,SET,OK', '#WRA,OK,24'])
-
+    expect(j.write_array('0001000')).to_equal('#WRA,OK,24')
+    expect(j.pin_states).to_equal({
+        IO1: PIN_OFF,
+        IO2: PIN_OFF,
+        IO3: PIN_OFF,
+        IO4: PIN_ON,
+        IO5: PIN_OFF,
+        IO6: PIN_OFF,
+        IO7: PIN_OFF,
+        IO8: PIN_OFF,
+        IO9: PIN_OFF,
+        IO10: PIN_OFF,
+        IO11: PIN_OFF,
+        IO12: PIN_OFF,
+        IO13: PIN_OFF,
+        IO14: PIN_OFF
+    })
 
 
