@@ -173,6 +173,9 @@ class Jerome:
         wra = self.write_array('000000010101010000000000')
         return ios + [wra]
 
+    def mkr_set_bit_pattern(self, pattern):
+        return [self.mkr_set_bit(bit, int(state)) for bit, state in enumerate(pattern)]
+
     def mkr_set_bit(self, bit: int, state: int):
         p_line, n_line = self.mkr_bits[bit]
         ans_p_line = self.write_line(p_line, state)
