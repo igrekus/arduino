@@ -54,8 +54,8 @@ default_pin_states = {
 }
 
 # matlab code bits -> normalized bits:
-# 6 -> 0, 5 -> 1, 4 -> 2, 3 -> 3
-b0p, b0n, b1p, b1n, b2p, b2n, b3p, b3n = IO7, IO8, IO9, IO10, IO13, IO14, IO11, IO12
+# 5 -> 0, 6 -> 1, 3 -> 2, 4 -> 3
+b0p, b0n, b1p, b1n, b2p, b2n, b3p, b3n = IO9, IO10, IO7, IO8, IO11, IO12, IO13, IO14
 
 
 class JeromeSerialMock:
