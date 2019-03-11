@@ -224,7 +224,7 @@ class Jerome:
         return self._pin_io
 
     @classmethod
-    def find_com_port(cls):
+    def try_find(cls):
 
         def available_ports():
             ports = list()
