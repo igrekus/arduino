@@ -55,3 +55,24 @@ def test_jerome_write_array(setup_jerome):
     })
 
 
+def test_jerome_write_line(setup_jerome):
+    j = setup_jerome
+
+    expect(j.write_line(7, 1)).to_equal('#WR,OK')
+    expect(j.pin_states).to_equal({
+        IO1: PIN_OFF,
+        IO2: PIN_OFF,
+        IO3: PIN_OFF,
+        IO4: PIN_OFF,
+        IO5: PIN_OFF,
+        IO6: PIN_OFF,
+        IO7: PIN_ON,
+        IO8: PIN_OFF,
+        IO9: PIN_OFF,
+        IO10: PIN_OFF,
+        IO11: PIN_OFF,
+        IO12: PIN_OFF,
+        IO13: PIN_OFF,
+        IO14: PIN_OFF
+    })
+
