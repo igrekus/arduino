@@ -104,7 +104,7 @@ class Jerome:
         self._delay = 0.0
 
         self._pin_io = dict(default_pin_io)
-        self._pim_state = dict(default_pin_states)
+        self._pin_states = dict(default_pin_states)
 
     def __str__(self):
         return f'{self._name} at {self._serial.port}'
