@@ -14,7 +14,17 @@ IO10, \
 IO11, \
 IO12, \
 IO13, \
-IO14 = range(1, 15)
+IO14, \
+IO15, \
+IO16, \
+IO17, \
+IO18, \
+IO19, \
+IO20, \
+IO21, \
+IO22, \
+IO23, \
+IO24 = range(1, 25)
 
 IO_OUT, IO_IN = 0, 1
 PIN_OFF, PIN_ON = 0, 1
@@ -33,7 +43,17 @@ default_pin_io = {
     IO11: IO_OUT,
     IO12: IO_OUT,
     IO13: IO_OUT,
-    IO14: IO_OUT
+    IO14: IO_OUT,
+    IO15: IO_OUT,
+    IO16: IO_OUT,
+    IO17: IO_OUT,
+    IO18: IO_OUT,
+    IO19: IO_OUT,
+    IO20: IO_OUT,
+    IO21: IO_OUT,
+    IO22: IO_OUT,
+    IO23: IO_OUT,
+    IO24: IO_OUT
 }
 
 default_pin_states = {
@@ -50,7 +70,17 @@ default_pin_states = {
     IO11: PIN_OFF,
     IO12: PIN_OFF,
     IO13: PIN_OFF,
-    IO14: PIN_OFF
+    IO14: PIN_OFF,
+    IO15: PIN_OFF,
+    IO16: PIN_OFF,
+    IO17: PIN_OFF,
+    IO18: PIN_OFF,
+    IO19: PIN_OFF,
+    IO20: PIN_OFF,
+    IO21: PIN_OFF,
+    IO22: PIN_OFF,
+    IO23: PIN_OFF,
+    IO24: PIN_OFF
 }
 
 # matlab code bits -> normalized bits:
