@@ -51,7 +51,17 @@ def test_jerome_write_array(setup_jerome):
         IO11: PIN_OFF,
         IO12: PIN_OFF,
         IO13: PIN_OFF,
-        IO14: PIN_OFF
+        IO14: PIN_OFF,
+        IO15: PIN_OFF,
+        IO16: PIN_OFF,
+        IO17: PIN_OFF,
+        IO18: PIN_OFF,
+        IO19: PIN_OFF,
+        IO20: PIN_OFF,
+        IO21: PIN_OFF,
+        IO22: PIN_OFF,
+        IO23: PIN_OFF,
+        IO24: PIN_OFF
     })
 
 
@@ -73,6 +83,16 @@ def test_jerome_write_line(setup_jerome):
         IO11: PIN_OFF,
         IO12: PIN_OFF,
         IO13: PIN_OFF,
-        IO14: PIN_OFF
+        IO14: PIN_OFF,
+        IO15: PIN_OFF,
+        IO16: PIN_OFF,
+        IO17: PIN_OFF,
+        IO18: PIN_OFF,
+        IO19: PIN_OFF,
+        IO20: PIN_OFF,
+        IO21: PIN_OFF,
+        IO22: PIN_OFF,
+        IO23: PIN_OFF,
+        IO24: PIN_OFF
     })
 
