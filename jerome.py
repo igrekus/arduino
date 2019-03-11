@@ -140,6 +140,8 @@ class Jerome:
         return self.query(f'$KE,IO,SET,{pin},{state}')
 
     def write_array(self, array):
+        for line, state in enumerate(array):
+            self._pin_states[line + 1] = int(state)
         return self.query(f'$KE,WRA,{array}')
 
     @property
