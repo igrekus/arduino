@@ -149,6 +149,7 @@ class Jerome:
 
     def write(self, command: str):
         cmd = (command + '\r\n').encode('ascii')
+        print(f'{self.name} write: {cmd}')
         return self._serial.write(cmd)
 
     def read_all(self):
@@ -158,7 +159,9 @@ class Jerome:
     def query(self, question: str):
         self.write(question)
         time.sleep(self._delay)
-        return self.read_all()
+        ans = self.read_all()
+        print(f'>>> {ans}')
+        return ans
 
     def close(self):
         if self._serial.is_open:
