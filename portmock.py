@@ -1,8 +1,4 @@
-from arduino.arduinospi import ArduinoSpi
-
-
 class PortMock:
-
     def __init__(self, port='COM5', baudrate=115200, parity='N', bytesize=8, stopbits=1, timeout=1):
         self.port = port
         self.baudrate = baudrate
@@ -30,11 +26,3 @@ class PortMock:
     @property
     def is_open(self):
         return True
-
-
-class ArduinoSpiMock(ArduinoSpi):
-
-    def __init__(self, *args, **kwargs):
-        self._port = PortMock()
-        self._name = 'SPI-mock'
-        self._delay = 0

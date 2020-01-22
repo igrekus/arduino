@@ -1,9 +1,8 @@
-from time import sleep
-from serial import Serial
+import serial
+import time
 
 
-class ArduinoSpi(object):
-
+class ArduinoSpi:
     command_write_lpf_code = 'LPF'
     command_start = '<'
     command_xra1405_write = 'x'
@@ -13,10 +12,9 @@ class ArduinoSpi(object):
     command_set_p0_p7_output = '0C00'
     command_p0_p7_write = '04'
 
-    def __init__(self, *args, **kwargs):
-        self._port = Serial(*args, **kwargs)
-
-        self._name = 'SPI'
+    def __init__(self, port):
+        self._port = port
+        self._name = 'SPI' if isinstance(self._port, serial.Serial) else 'SPI mock'
         self._delay = 0.2
 
     def __str__(self):
@@ -36,7 +34,7 @@ class ArduinoSpi(object):
         self.write(question)
         # while not self._port.in_waiting:
         #     pass
-        sleep(self._delay)
+        time.sleep(self._delay)
         return self.read_all()
 
     def disconnect(self):
@@ -45,7 +43,7 @@ class ArduinoSpi(object):
             self._port.close()
 
     def set_lpf_code_spi(self, code: int) -> bool:
-        print(f'{self._name}: set_lpf_code_spi({code})')
+        print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
         command = \
             self.command_start + \
             self.command_xra1405_write + \
@@ -59,15 +57,39 @@ class ArduinoSpi(object):
         self.query(command)
         return True
 
-    def set_lpf_code_parallel(self, code: int) -> bool:
-        print(f'{self._name}: set_lpf_code_parallel({code})')
-        command = f'<l.{code}>'
-        self.query(command)
-        return True
-
-    set_lpf_code = set_lpf_code_parallel
-
     @property
     def name(self):
         return f'{self._name} at {self._port.port}'
 
+    @classmethod
+    def from_address(cls, port: str):
+        return cls(serial.Serial(port=port, baudrate=115200, stopbits=serial.STOPBITS_ONE, bytesize=8,
+                                 parity=serial.PARITY_NONE, timeout=0.5))
+
+    @classmethod
+    def find(cls):
+        def available_ports():
+            ports = list()
+            for p in [f'COM{i+1}' for i in range(256)]:
+                try:
+                    s = serial.Serial(port=p, baudrate=115200)
+                    s.close()
+                    ports.append(p)
+                except (OSError, serial.SerialException):
+                    pass
+            return ports
+
+        for port in available_ports():
+            s = serial.Serial(port=port, baudrate=115200, timeout=0.5)
+            if s.is_open:
+                s.write(b'<n>')
+                ans = s.read(9)
+                s.close()
+                if b'SPI' in ans:
+                    return ArduinoSpi.from_address(port)
+        else:
+            return None
+
+    @property
+    def status(self):
+        return f'{self._name} at {self._port.port}'
