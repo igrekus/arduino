@@ -10,7 +10,8 @@ class ArduinoParallel:
         self._port = port
 
         self._name = 'Parallel' if isinstance(port, serial.Serial) else 'Parallel mock'
-        self._delay = 0.3
+        # self._delay = 0.3
+        self._delay = 0
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'
