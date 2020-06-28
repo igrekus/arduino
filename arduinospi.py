@@ -43,17 +43,18 @@ class ArduinoSpi:
             self._port.close()
 
     def set_lpf_code_spi(self, code: int) -> bool:
+        assert code in range(64)
         print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
-        command = \
-            self.command_start + \
-            self.command_xra1405_write + \
-            self.command_separator + \
-            self.command_set_p0_p7_output + \
-            self.command_separator + \
-            self.command_p0_p7_write + \
-            f'{code:02X}' + \
-            self.command_end + \
-            self.command_newline
+        command = f'<l.{code}>'
+        self.query(command)
+        return True
+
+    def set_lpf_code(self, code: int) -> bool:
+        assert code in range(64)
+        print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
+        command = f'<l.{code}>'
+        self.query(command)
+        return True
         self.query(command)
         return True
 
