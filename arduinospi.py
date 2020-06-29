@@ -55,6 +55,12 @@ class ArduinoSpi:
         command = f'<l.{code}>'
         self.query(command)
         return True
+
+    def set_att_psm_code(self, att_code: int, psm_code: int) -> bool:
+        assert att_code in range(64)
+        assert psm_code in range(64)
+        print(f'{self.__class__.__name__}: set_att_psm_code({att_code}, {psm_code})')
+        command = f'<u.{att_code:02X}.{psm_code:02X}>'
         self.query(command)
         return True
 
