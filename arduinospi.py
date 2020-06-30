@@ -16,6 +16,7 @@ class ArduinoSpi:
         self._port = port
         self._name = 'SPI' if isinstance(self._port, serial.Serial) else 'SPI mock'
         self._delay = 0
+        # self._delay = 0.2
 
     def __str__(self):
         return f'{self._name} at {self._port.port}'
