@@ -20,15 +20,15 @@ class ProgrammerFactory:
         ard = ArduinoParallel.from_address(self._port)
         if not ard:
             ard = ArduinoSpi.from_address(self._port)
-            if not ard:
-                ard = ArduinoParallel(PortMock())
+        if not ard:
+            ard = ArduinoParallel(PortMock())
         return ard
 
     def find(self):
         ard = self.find_spi()
         if not ard:
             ard = self.find_parallel()
-            if not ard:
-                ard = ArduinoParallel(PortMock())
+        if not ard:
+            ard = ArduinoParallel(PortMock())
         return ard
 
