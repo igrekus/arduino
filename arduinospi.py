@@ -43,17 +43,22 @@ class ArduinoSpi:
         if self._port.is_open:
             self._port.close()
 
-    def set_lpf_code_spi(self, code: int) -> bool:
+    def set_lpf_code_spi(self, code: int, address: int=0) -> bool:
         assert code in range(64)
         print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
         command = f'<l.{code}>'
         self.query(command)
         return True
 
-    def set_lpf_code(self, code: int) -> bool:
-        assert code in range(64)
+    def set_lpf_code(self, code: int, address: int=0) -> bool:
         print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
         command = f'<l.{code}>'
+        self.query(command)
+        return True
+
+    def set_lpf_code_spi_s_format(self, code: int, address: int) -> bool:
+        print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
+        command = f'<s.{code:02X}00000{address:X}>'
         self.query(command)
         return True
 
