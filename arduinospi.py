@@ -62,6 +62,13 @@ class ArduinoSpi:
         self.query(command)
         return True
 
+    def set_lpf_code_spi_s_format_reversed(self, code: int, address: int) -> bool:
+        print(f'{self.__class__.__name__}: set_lpf_code_spi({code})')
+        reverse = f"{int(''.join(reversed(f'{code:b}')), 2):X}"
+        command = f'<s.{reverse}00000{address:X}>'
+        self.query(command)
+        return True
+
     def set_att_psm_code(self, att_code: int, psm_code: int) -> bool:
         assert att_code in range(64)
         assert psm_code in range(64)
