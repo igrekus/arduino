@@ -83,7 +83,7 @@ class ArduinoParallel:
                 ans = s.read_all()
                 s.close()
                 if b'ARDUINO' in ans:
-                    return port
+                    return ArduinoParallel.from_address(port)
         else:
             return ''
 
