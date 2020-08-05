@@ -22,7 +22,7 @@ class ArduinoSpi:
         return f'{self._name} at {self._port.port}'
 
     def write(self, command: str):
-        cmd = (command).encode('ascii')
+        cmd = command.encode('ascii')
         print(f'{self._name} write: {cmd.strip()}')
         return self._port.write(cmd)
 
