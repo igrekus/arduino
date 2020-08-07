@@ -77,9 +77,9 @@ class ArduinoSpi:
         self.query(command)
         return True
 
-    def set_pl2_state(self, words: list):
+    def send_u_format_command(self, words: list):
         command = f'<u.{".".join(words)}>'
-        print(f'{self.__class__.__name__}: set_pl2_state({words})')
+        print(f'{self.__class__.__name__}: send_u_format_command({words})')
         return self.query(command)
 
     @property
