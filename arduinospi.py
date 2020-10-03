@@ -108,6 +108,7 @@ class ArduinoSpi:
             s = serial.Serial(port=port, baudrate=115200, timeout=0.5)
             if s.is_open:
                 s.write(b'<n>')
+                time.sleep(0.3)
                 ans = s.read(9)
                 s.close()
                 if b'SPI' in ans:
